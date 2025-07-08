@@ -46,6 +46,7 @@ The backend endpoint `/incidencias` now accepts the following query parameters:
 - `offset`
 - `priority`
 - `facility`
+- `id`
 
 These parameters can be combined to paginate and filter the results.
 
