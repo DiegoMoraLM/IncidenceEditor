@@ -27,16 +27,16 @@ The server will run on port `3001` by default. You can override the port by sett
 
 ## Frontend
 
-Two example frontends are included:
+An example frontend is included in the `webapp` folder. It is a small
+plain JavaScript application. The `index.html` page lists the incidences
+returned by the backend and each row contains a link to `edit.html` for
+editing that record.
 
-1. `webapp` contains the original plain JavaScript version.
-2. `frontend` contains a lightweight Angular application. Install its dependencies and run the build script:
-   ```bash
-   cd frontend
-   npm install
-   npm run build
-   ```
-   Then open `frontend/index.html` in a browser. The Angular version provides the same filters and table display as the plain JavaScript one.
+After starting the backend simply open `webapp/index.html` in a browser.
+If the backend is unreachable or returns an error, an error message will appear
+above the filters in the page. When you click **Edit** you will be taken to
+`webapp/edit.html?id=<id>` where you can update all fields. Saving will return
+you to the list.
 
 The backend endpoint `/incidencias` now accepts the following query parameters:
 

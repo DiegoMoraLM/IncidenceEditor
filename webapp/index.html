@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidence Editor</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Incidence Editor</h1>
+    <div id="message" class="error hidden"></div>
+
+    <section id="filters">
+        <label>
+            Priority:
+            <input type="text" id="filter-priority" placeholder="e.g. High">
+        </label>
+        <label>
+            Facility:
+            <input type="text" id="filter-facility" placeholder="Facility name">
+        </label>
+        <label>
+            Limit:
+            <input type="number" id="filter-limit" value="100" min="1">
+        </label>
+        <button id="apply-filters">Apply Filters</button>
+    </section>
+
+    <table id="incidences-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Manager</th>
+                <th>Worker Code</th>
+                <th>Facility</th>
+                <th>Description</th>
+                <th>Incidence Date</th>
+                <th>Priority</th>
+                <th>Actions</th>
+                <th>Action Operator</th>
+                <th>Resolution Date</th>
+                <th>Stop Init</th>
+                <th>Stop End</th>
+                <th>Notified To</th>
+                <th>Assigned To</th>
+                <th>Created</th>
+                <th>Last Modified</th>
+                <th>Archived</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
