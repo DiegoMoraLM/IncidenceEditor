@@ -22,7 +22,10 @@ app.get('/incidencias', async (req, res) => {
       id: idParam,
     } = req.query;
 
-    const id = idParam ? parseInt(idParam, 10) : undefined;
+
+    const id = idParam !== undefined && idParam !== ''
+      ? parseInt(idParam, 10)
+      : undefined;
     const limitNum = parseInt(limit, 10) || 1000;
     const offsetNum = parseInt(offset, 10) || 0;
 
@@ -30,7 +33,9 @@ app.get('/incidencias', async (req, res) => {
     const filters = [];
     const values = [];
 
-    if (id) {
+
+    if (id !== undefined && !Number.isNaN(id)) {
+
       values.push(id);
       filters.push(`"Id" = $${values.length}`);
     }
