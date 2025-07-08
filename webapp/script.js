@@ -1,6 +1,9 @@
 const API_BASE = 'http://localhost:3001';
 
 async function fetchIncidences() {
+
+    hideMessage();
+
     const priority = document.getElementById('filter-priority').value;
     const facility = document.getElementById('filter-facility').value;
     const limit = document.getElementById('filter-limit').value || 100;
@@ -9,9 +12,21 @@ async function fetchIncidences() {
     if (priority) params.append('priority', priority);
     if (facility) params.append('facility', facility);
 
-    const response = await fetch(`${API_BASE}/incidencias?${params.toString()}`);
-    const incidences = await response.json();
-    renderTable(incidences);
+
+    try {
+        const response = await fetch(`${API_BASE}/incidencias?${params.toString()}`);
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(text || 'Error fetching incidences');
+        }
+        const incidences = await response.json();
+        hideMessage();
+        renderTable(incidences);
+    } catch (err) {
+        console.error(err);
+        showError('Could not load incidences: ' + err.message);
+    }
+
 }
 
 function renderTable(incidences) {
@@ -86,15 +101,37 @@ document.getElementById('edit-form').addEventListener('submit', async (e) => {
         Archived: document.getElementById('edit-Archived').checked
     };
 
-    await fetch(`${API_BASE}/incidencias/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    });
 
-    closeEditForm();
-    fetchIncidences();
+    try {
+        const res = await fetch(`${API_BASE}/incidencias/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!res.ok) {
+            const text = await res.text();
+            throw new Error(text || 'Failed to update');
+        }
+
+        closeEditForm();
+        fetchIncidences();
+        hideMessage();
+    } catch (err) {
+        console.error(err);
+        showError('Could not update incidence: ' + err.message);
+    }
 });
+
+function showError(msg) {
+    const el = document.getElementById('message');
+    el.textContent = msg;
+    el.classList.remove('hidden');
+}
+
+function hideMessage() {
+    document.getElementById('message').classList.add('hidden');
+}
+
 
 // Initial load
 fetchIncidences();

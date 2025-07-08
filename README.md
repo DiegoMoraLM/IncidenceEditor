@@ -33,6 +33,10 @@ backend and lets you edit each record.
 
 After starting the backend simply open `webapp/index.html` in a browser.
 
+If the backend is unreachable or returns an error, an error message will appear
+above the filters in the page.
+
+
 The backend endpoint `/incidencias` now accepts the following query parameters:
 
 - `limit` (default `1000`)
