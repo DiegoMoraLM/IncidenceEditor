@@ -13,15 +13,42 @@ const PORT = process.env.PORT || 3001;
 // GET - Lista de incidencias (sin imágenes)
 app.get('/incidencias', async (req, res) => {
   try {
-    const result = await pool.query(`
-      SELECT 
+    const { limit = 1000, offset = 0, priority, facility } = req.query;
+
+    const filters = [];
+    const values = [];
+
+    if (priority) {
+      values.push(priority);
+      filters.push(`"Priority" = $${values.length}`);
+    }
+    if (facility) {
+      values.push(`%${facility}%`);
+      filters.push(`"Facility" ILIKE $${values.length}`);
+    }
+
+    let query = `
+      SELECT
         "Id", "ManagerName", "WorkerCode", "Facility", "Description",
         "IncidenceDate", "Priority", "Actions", "ActionOperator",
-        "ResolutionDate", "StopInit", "StopEnd", "NotifiedTo", 
+        "ResolutionDate", "StopInit", "StopEnd", "NotifiedTo",
         "AssignedTo", "CreatedDate", "LastModifiedDate", "Archived"
-      FROM "Incidence"
-      ORDER BY "Id"
-    `);
+      FROM "Incidence"`;
+
+    if (filters.length > 0) {
+      query += ' WHERE ' + filters.join(' AND ');
+    }
+
+    query += ' ORDER BY "Id"';
+    values.push(limit);
+    query += ` LIMIT $${values.length}`;
+
+    if (offset) {
+      values.push(offset);
+      query += ` OFFSET $${values.length}`;
+    }
+
+    const result = await pool.query(query, values);
     res.json(result.rows);
   } catch (error) {
     console.error(error);
