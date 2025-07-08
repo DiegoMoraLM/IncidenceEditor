@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3001;
 // GET - Lista de incidencias (sin imágenes)
 app.get('/incidencias', async (req, res) => {
   try {
+
     const {
       limit = 1000,
       offset = 0,
@@ -21,16 +22,20 @@ app.get('/incidencias', async (req, res) => {
       id: idParam,
     } = req.query;
 
+
     const id = idParam !== undefined && idParam !== ''
       ? parseInt(idParam, 10)
       : undefined;
     const limitNum = parseInt(limit, 10) || 1000;
     const offsetNum = parseInt(offset, 10) || 0;
 
+
     const filters = [];
     const values = [];
 
+
     if (id !== undefined && !Number.isNaN(id)) {
+
       values.push(id);
       filters.push(`"Id" = $${values.length}`);
     }
