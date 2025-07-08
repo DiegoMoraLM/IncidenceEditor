@@ -13,11 +13,25 @@ const PORT = process.env.PORT || 3001;
 // GET - Lista de incidencias (sin imágenes)
 app.get('/incidencias', async (req, res) => {
   try {
-    const { limit = 1000, offset = 0, priority, facility } = req.query;
+    const {
+      limit = 1000,
+      offset = 0,
+      priority,
+      facility,
+      id: idParam,
+    } = req.query;
+
+    const id = idParam ? parseInt(idParam, 10) : undefined;
+    const limitNum = parseInt(limit, 10) || 1000;
+    const offsetNum = parseInt(offset, 10) || 0;
 
     const filters = [];
     const values = [];
 
+    if (id) {
+      values.push(id);
+      filters.push(`"Id" = $${values.length}`);
+    }
     if (priority) {
       values.push(priority);
       filters.push(`"Priority" = $${values.length}`);
@@ -40,11 +54,12 @@ app.get('/incidencias', async (req, res) => {
     }
 
     query += ' ORDER BY "Id"';
-    values.push(limit);
+    const finalLimit = id ? 1 : limitNum;
+    values.push(finalLimit);
     query += ` LIMIT $${values.length}`;
 
-    if (offset) {
-      values.push(offset);
+    if (!id && offsetNum) {
+      values.push(offsetNum);
       query += ` OFFSET $${values.length}`;
     }
 
