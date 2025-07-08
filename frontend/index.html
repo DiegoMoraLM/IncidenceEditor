@@ -12,6 +12,10 @@
 </head>
 <body>
   <incidence-app></incidence-app>
+  <!-- Zone.js is required because the compiled Angular code contains a bare
+       import for 'zone.js'. When this page is served without a bundler the
+       browser needs the library explicitly loaded. -->
+  <script src="https://cdn.jsdelivr.net/npm/zone.js@0.15.1/bundles/zone.umd.min.js"></script>
   <script type="module" src="./dist/main.js"></script>
 </body>
 </html>

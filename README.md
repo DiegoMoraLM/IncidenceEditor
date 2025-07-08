@@ -30,7 +30,13 @@ The server will run on port `3001` by default. You can override the port by sett
 Two example frontends are included:
 
 1. `webapp` contains the original plain JavaScript version.
-2. `frontend` contains a lightweight Angular application. Open `frontend/index.html` in a browser after running `npx tsc -p frontend/tsconfig.json` to compile the TypeScript sources. The Angular version provides the same filters and table display as the plain JavaScript one.
+2. `frontend` contains a lightweight Angular application. Install its dependencies and run the build script:
+   ```bash
+   cd frontend
+   npm install
+   npm run build
+   ```
+   Then open `frontend/index.html` in a browser. The Angular version provides the same filters and table display as the plain JavaScript one.
 
 The backend endpoint `/incidencias` now accepts the following query parameters:
 
