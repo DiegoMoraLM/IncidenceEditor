@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
   "dependencies": {
     "@angular/common": "^20.0.6",
     "@angular/core": "^20.0.6",
