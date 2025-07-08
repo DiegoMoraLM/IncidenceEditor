@@ -4,17 +4,42 @@
   <meta charset="UTF-8">
   <title>Incidences</title>
   <style>
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 4px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .filters {
+      margin-bottom: 10px;
+    }
+    label {
+      margin-right: 10px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 4px;
+    }
   </style>
 </head>
 <body>
   <h1>Incidence List</h1>
-  <div>
-    <label>Priority: <input id="priority" type="text"></label>
-    <label>Facility: <input id="facility" type="text"></label>
-    <label>Limit: <input id="limit" type="number" value="1000"></label>
+  <div class="filters">
+    <label>Priority:
+      <select id="priority">
+        <option value="">Any</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+    </label>
+    <label>Facility: <input id="facility" type="text" placeholder="Facility name"></label>
+    <label>Limit: <input id="limit" type="number" value="1000" min="1"></label>
+    <label>Offset: <input id="offset" type="number" value="0" min="0"></label>
     <button id="load">Load</button>
+    <button id="loadAll">Load All</button>
   </div>
   <table id="incidences"></table>
 
