@@ -13,11 +13,15 @@ const PORT = process.env.PORT || 3001;
 // GET - Lista de incidencias (sin imágenes)
 app.get('/incidencias', async (req, res) => {
   try {
-    const { limit = 1000, offset = 0, priority, facility } = req.query;
+    const { limit = 1000, offset = 0, priority, facility, id } = req.query;
 
     const filters = [];
     const values = [];
 
+    if (id) {
+      values.push(id);
+      filters.push(`"Id" = $${values.length}`);
+    }
     if (priority) {
       values.push(priority);
       filters.push(`"Priority" = $${values.length}`);

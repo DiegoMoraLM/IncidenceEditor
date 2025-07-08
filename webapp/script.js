@@ -4,11 +4,13 @@ async function fetchIncidences() {
 
     hideMessage();
 
+    const id = document.getElementById('filter-id').value;
     const priority = document.getElementById('filter-priority').value;
     const facility = document.getElementById('filter-facility').value;
     const limit = document.getElementById('filter-limit').value || 100;
 
     const params = new URLSearchParams({ limit });
+    if (id) params.append('id', id);
     if (priority) params.append('priority', priority);
     if (facility) params.append('facility', facility);
 
