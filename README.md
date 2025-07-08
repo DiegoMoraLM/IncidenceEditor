@@ -49,6 +49,8 @@ The backend endpoint `/incidencias` now accepts the following query parameters:
 - `id`
 
 These parameters can be combined to paginate and filter the results.
+When `id` is provided the backend returns only the matching incidence
+and ignores any `offset` value.
 
 ## Notes
 
