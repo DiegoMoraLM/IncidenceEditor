@@ -23,9 +23,13 @@ From the `backend` directory, start the server with:
 npm start
 ```
 
-The server will run on port `3001`. To stop it press `Ctrl+C` in the terminal where it is running.
+The server will run on port `3001` by default. You can override the port by setting the `PORT` variable in a `.env` file. To stop the server press `Ctrl+C` in the terminal where it is running.
 
 ## Notes
 
 The previous Windows batch files (`start-app.bat` and `stop-app.bat`) have been removed. Use the `npm` commands above to run the backend on any operating system.
+
+### Environment variables
+
+Copy `.env.example` to `.env` and adjust the values to match your PostgreSQL configuration. You can also set `PORT` if you want the server to listen on a different port.
 
