@@ -25,6 +25,19 @@ npm start
 
 The server will run on port `3001` by default. You can override the port by setting the `PORT` variable in a `.env` file. To stop the server press `Ctrl+C` in the terminal where it is running.
 
+## Frontend
+
+A minimal frontend is provided in the `webapp` folder. After starting the backend, open `webapp/index.html` in a web browser to view the list of incidences. You can filter results by priority or facility and limit the number of rows returned.
+
+The backend endpoint `/incidencias` now accepts the following query parameters:
+
+- `limit` (default `1000`)
+- `offset`
+- `priority`
+- `facility`
+
+These parameters can be combined to paginate and filter the results.
+
 ## Notes
 
 The previous Windows batch files (`start-app.bat` and `stop-app.bat`) have been removed. Use the `npm` commands above to run the backend on any operating system.
