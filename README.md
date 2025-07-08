@@ -27,7 +27,7 @@ The server will run on port `3001` by default. You can override the port by sett
 
 ## Frontend
 
-A minimal frontend is provided in the `webapp` folder. After starting the backend, open `webapp/index.html` in a web browser to view the list of incidences. You can filter results by priority or facility and limit the number of rows returned.
+A minimal frontend is provided in the `webapp` folder. After starting the backend, open `webapp/index.html` in a web browser to view the list of incidences. The page now includes filters for priority, facility, limit and offset. In addition to the **Load** button there is a **Load All** button that will automatically request all pages from the backend and display the combined results.
 
 The backend endpoint `/incidencias` now accepts the following query parameters:
 
