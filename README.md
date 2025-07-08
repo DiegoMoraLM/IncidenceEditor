@@ -1,3 +1,4 @@
+
 # IncidenceEditor
 
 This project contains a simple Node.js backend for managing incidences.
@@ -27,3 +28,4 @@ The server will run on port `3001`. To stop it press `Ctrl+C` in the terminal wh
 ## Notes
 
 The previous Windows batch files (`start-app.bat` and `stop-app.bat`) have been removed. Use the `npm` commands above to run the backend on any operating system.
+
