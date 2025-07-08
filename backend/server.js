@@ -34,7 +34,9 @@ app.get('/incidencias', async (req, res) => {
     const values = [];
 
 
-    if (id !== undefined && !Number.isNaN(id)) {
+    const hasIdFilter = id !== undefined && !Number.isNaN(id);
+
+    if (hasIdFilter) {
 
       values.push(id);
       filters.push(`"Id" = $${values.length}`);
@@ -61,11 +63,11 @@ app.get('/incidencias', async (req, res) => {
     }
 
     query += ' ORDER BY "Id"';
-    const finalLimit = id ? 1 : limitNum;
+    const finalLimit = hasIdFilter ? 1 : limitNum;
     values.push(finalLimit);
     query += ` LIMIT $${values.length}`;
 
-    if (!id && offsetNum) {
+    if (!hasIdFilter && offsetNum) {
       values.push(offsetNum);
       query += ` OFFSET $${values.length}`;
     }
