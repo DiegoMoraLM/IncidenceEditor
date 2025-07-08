@@ -46,81 +46,20 @@ function renderTable(incidences) {
         }
 
         const editTd = document.createElement('td');
-        const btn = document.createElement('button');
-        btn.textContent = 'Edit';
-        btn.addEventListener('click', () => openEditForm(inc));
-        editTd.appendChild(btn);
+
+        const link = document.createElement('a');
+        link.textContent = 'Edit';
+        link.href = `edit.html?id=${encodeURIComponent(inc.Id)}`;
+        editTd.appendChild(link);
+
         tr.appendChild(editTd);
 
         tbody.appendChild(tr);
     });
 }
 
-function openEditForm(inc) {
-    const section = document.getElementById('edit-section');
-    section.classList.remove('hidden');
-    document.getElementById('edit-id').value = inc.Id;
-    const fields = [
-        'ManagerName','WorkerCode','Facility','Description','IncidenceDate',
-        'Priority','Actions','ActionOperator','ResolutionDate','StopInit',
-        'StopEnd','NotifiedTo','AssignedTo','Archived'
-    ];
-    fields.forEach(f => {
-        const el = document.getElementById(`edit-${f}`);
-        if (el.type === 'checkbox') {
-            el.checked = inc[f];
-        } else {
-            el.value = inc[f] || '';
-        }
-    });
-}
-
-function closeEditForm() {
-    document.getElementById('edit-section').classList.add('hidden');
-}
-
 document.getElementById('apply-filters').addEventListener('click', fetchIncidences);
-document.getElementById('cancel-edit').addEventListener('click', closeEditForm);
-document.getElementById('edit-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const id = document.getElementById('edit-id').value;
-    const data = {
-        ManagerName: document.getElementById('edit-ManagerName').value,
-        WorkerCode: document.getElementById('edit-WorkerCode').value,
-        Facility: document.getElementById('edit-Facility').value,
-        Description: document.getElementById('edit-Description').value,
-        IncidenceDate: document.getElementById('edit-IncidenceDate').value,
-        Priority: document.getElementById('edit-Priority').value,
-        Actions: document.getElementById('edit-Actions').value,
-        ActionOperator: document.getElementById('edit-ActionOperator').value,
-        ResolutionDate: document.getElementById('edit-ResolutionDate').value,
-        StopInit: document.getElementById('edit-StopInit').value,
-        StopEnd: document.getElementById('edit-StopEnd').value,
-        NotifiedTo: document.getElementById('edit-NotifiedTo').value,
-        AssignedTo: document.getElementById('edit-AssignedTo').value,
-        Archived: document.getElementById('edit-Archived').checked
-    };
 
-
-    try {
-        const res = await fetch(`${API_BASE}/incidencias/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        if (!res.ok) {
-            const text = await res.text();
-            throw new Error(text || 'Failed to update');
-        }
-
-        closeEditForm();
-        fetchIncidences();
-        hideMessage();
-    } catch (err) {
-        console.error(err);
-        showError('Could not update incidence: ' + err.message);
-    }
-});
 
 function showError(msg) {
     const el = document.getElementById('message');

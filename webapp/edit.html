@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Incidence</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Edit Incidence</h1>
+    <div id="message" class="error hidden"></div>
+    <form id="edit-form">
+        <div class="form-grid">
+            <label>Manager Name<input type="text" id="ManagerName"></label>
+            <label>Worker Code<input type="text" id="WorkerCode"></label>
+            <label>Facility<input type="text" id="Facility"></label>
+            <label>Description<input type="text" id="Description"></label>
+            <label>Incidence Date<input type="datetime-local" id="IncidenceDate"></label>
+            <label>Priority<input type="text" id="Priority"></label>
+            <label>Actions<input type="text" id="Actions"></label>
+            <label>Action Operator<input type="text" id="ActionOperator"></label>
+            <label>Resolution Date<input type="datetime-local" id="ResolutionDate"></label>
+            <label>Stop Init<input type="datetime-local" id="StopInit"></label>
+            <label>Stop End<input type="datetime-local" id="StopEnd"></label>
+            <label>Notified To<input type="text" id="NotifiedTo"></label>
+            <label>Assigned To<input type="text" id="AssignedTo"></label>
+            <label>Archived<input type="checkbox" id="Archived"></label>
+        </div>
+        <button type="submit">Save</button>
+        <button type="button" id="cancel">Cancel</button>
+    </form>
+    <script src="edit.js"></script>
+</body>
+</html>
