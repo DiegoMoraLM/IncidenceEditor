@@ -1,15 +1,31 @@
-# Incidence Editor
+
+# IncidenceEditor
+
+This project contains a simple Node.js backend for managing incidences.
 
 ## Setup
 
-Install dependencies and create a `.env` file based on `backend/.env.example`.
+1. Install **Node.js** (version 18 or later is recommended).
+2. Navigate to the `backend` folder:
+   ```bash
+   cd backend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Environment Variables
+## Running the server
 
-The backend uses the following variables:
+From the `backend` directory, start the server with:
 
-- `DB_HOST` – database host
-- `DB_PORT` – database port
-- `DB_NAME` – database name
-- `DB_USER` – database user
-- `DB_PASS` – user password
+```bash
+npm start
+```
+
+The server will run on port `3001`. To stop it press `Ctrl+C` in the terminal where it is running.
+
+## Notes
+
+The previous Windows batch files (`start-app.bat` and `stop-app.bat`) have been removed. Use the `npm` commands above to run the backend on any operating system.
+
