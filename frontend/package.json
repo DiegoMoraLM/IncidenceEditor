@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@angular/common": "^20.0.6",
+    "@angular/core": "^20.0.6",
+    "@angular/forms": "^20.0.6",
+    "@angular/platform-browser": "^20.0.6",
+    "@angular/platform-browser-dynamic": "^20.0.6",
+    "rxjs": "^7.8.2",
+    "zone.js": "^0.15.1"
+  }
+}
