@@ -1,0 +1,4 @@
+.filters { margin-bottom: 10px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 4px; }
+input[type="text"], select { width: 100%; box-sizing: border-box; }
