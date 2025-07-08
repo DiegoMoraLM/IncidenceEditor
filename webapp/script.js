@@ -1,7 +1,9 @@
 const API_BASE = 'http://localhost:3001';
 
 async function fetchIncidences() {
+
     hideMessage();
+
     const priority = document.getElementById('filter-priority').value;
     const facility = document.getElementById('filter-facility').value;
     const limit = document.getElementById('filter-limit').value || 100;
@@ -9,6 +11,7 @@ async function fetchIncidences() {
     const params = new URLSearchParams({ limit });
     if (priority) params.append('priority', priority);
     if (facility) params.append('facility', facility);
+
 
     try {
         const response = await fetch(`${API_BASE}/incidencias?${params.toString()}`);
@@ -23,6 +26,7 @@ async function fetchIncidences() {
         console.error(err);
         showError('Could not load incidences: ' + err.message);
     }
+
 }
 
 function renderTable(incidences) {
@@ -42,10 +46,12 @@ function renderTable(incidences) {
         }
 
         const editTd = document.createElement('td');
+
         const link = document.createElement('a');
         link.textContent = 'Edit';
         link.href = `edit.html?id=${encodeURIComponent(inc.Id)}`;
         editTd.appendChild(link);
+
         tr.appendChild(editTd);
 
         tbody.appendChild(tr);
@@ -53,6 +59,7 @@ function renderTable(incidences) {
 }
 
 document.getElementById('apply-filters').addEventListener('click', fetchIncidences);
+
 
 function showError(msg) {
     const el = document.getElementById('message');
@@ -63,6 +70,7 @@ function showError(msg) {
 function hideMessage() {
     document.getElementById('message').classList.add('hidden');
 }
+
 
 // Initial load
 fetchIncidences();

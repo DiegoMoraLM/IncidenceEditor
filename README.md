@@ -28,6 +28,7 @@ The server will run on port `3001` by default. You can override the port by sett
 ## Frontend
 
 An example frontend is included in the `webapp` folder. It is a small
+
 plain JavaScript application. The `index.html` page lists the incidences
 returned by the backend and each row contains a link to `edit.html` for
 editing that record.
@@ -37,6 +38,7 @@ If the backend is unreachable or returns an error, an error message will appear
 above the filters in the page. When you click **Edit** you will be taken to
 `webapp/edit.html?id=<id>` where you can update all fields. Saving will return
 you to the list.
+
 
 The backend endpoint `/incidencias` now accepts the following query parameters:
 
